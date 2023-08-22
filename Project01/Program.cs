@@ -36,9 +36,9 @@ namespace Project01
             Console.WriteLine(sumOfElementsInColumn);
             //Quest08
             int[] pulledRow = arrayService.PullOutRowFromArray(random2DArray, 2);
-            techService.WriteArray(pulledRow);
+            techService.Write1DArray(pulledRow);
             int[] pulledColumn = arrayService.PullOutColumnFromArray(random2DArray, 2);
-            techService.WriteArray(pulledColumn);
+            techService.Write1DArray(pulledColumn);
             //Quest09
             bool searchValueInColumn = arrayService.GetSearchIndexInColumnBool(random2DArray, 2, 7);
             Console.WriteLine(searchValueInColumn);
@@ -49,6 +49,28 @@ namespace Project01
             techService.Write2DArray(array2DWithAddedColumn);
             int[,] array2DWithAddedRow = arrayService.AddRowIn2DArray(random2DArray);
             techService.Write2DArray(array2DWithAddedRow);
+            //Quest11
+            int[,] array2DWithNewLength = arrayService.Change2DArray(random2DArray, 3, 4);
+            techService.Write2DArray(array2DWithNewLength);
+            //Quest12
+            int[,] array2DSwapRows = arrayService.SwapRowsIn2DArray(random2DArray, 2, 3);
+            techService.Write2DArray(array2DSwapRows);
+            int[,] array2DSwapColumns = arrayService.SwapColumsIn2DArray(random2DArray, 7, 23);
+            techService.Write2DArray(array2DSwapColumns);
+            //Quest13
+            int[] sumOfRows = arrayService.GetArrayOfSumInRows(random2DArray);
+            techService.Write1DArray(sumOfRows);
+            int[] sumOfColumns = arrayService.GetArrayOfSumInColumns(random2DArray);
+            techService.Write1DArray(sumOfColumns);
+            //Quest14 duplicate
+            //Quest15
+            int[,] array2DWithoutRow = arrayService.DeleteRow(random2DArray, 1);
+            techService.Write2DArray(array2DWithoutRow);
+            int[,] array2DWithoutColumn = arrayService.DeleteColumn(random2DArray, 1);
+            techService.Write2DArray(array2DWithoutColumn);
+            //Quest16
+            int[] chimera = arrayService.CreateChimera(random2DArray);
+            techService.Write1DArray(chimera);
         }
     }
 }

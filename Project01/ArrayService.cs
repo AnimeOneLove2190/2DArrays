@@ -359,7 +359,7 @@ namespace Project01
             CountRowsAndColums(array2D, out rows, out columns);
             int newRows = rows + 1;
             int[,] array2DWithAddedRow = new int[newRows, columns];
-            int[] addedColumn = new int[columns];
+            int[] addedRow = new int[columns];
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
@@ -369,9 +369,216 @@ namespace Project01
             }
             for (int i = 0; i < columns; i++)
             {
-                array2DWithAddedRow[newRows - 1, i] = addedColumn[i];
+                array2DWithAddedRow[newRows - 1, i] = addedRow[i];
             }
             return array2DWithAddedRow;
+        }
+        //Quest11
+        public int[,] Change2DArray(int[,] array2D, int newCountOfRows, int newCountOfColums)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            int[,] array2DWithNewLength = new int[newCountOfRows, newCountOfColums];
+            for (int i = 0; i < newCountOfRows - 1; i++)
+            {
+                for (int j = 0; j < newCountOfColums - 1; j++)
+                {
+                    array2DWithNewLength[i, j] = array2D[i, j];
+                }
+            }
+            return array2DWithNewLength;
+        }
+        //Quest12
+        public int[,] SwapRowsIn2DArray(int[,] array2D, int numberOfRowOne, int numberOfRowTwo)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            if ((numberOfRowOne >= columns || numberOfRowTwo >= columns) || (numberOfRowOne < 0 || numberOfRowTwo < 0))
+            {
+                return null;
+            }
+            int[,] array2DSwapRows = new int[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    array2DSwapRows[i, j] = array2D[i, j];
+                }
+            }
+            for (int i = 0; i < columns; i++)
+            {
+                array2DSwapRows[numberOfRowOne, i] = array2D[numberOfRowTwo, i];
+                array2DSwapRows[numberOfRowTwo, i] = array2D[numberOfRowOne, i];
+            }
+            return array2DSwapRows;
+        }
+        public int[,] SwapColumsIn2DArray(int[,] array2D, int numberOfColumOne, int numberOfColumTwo)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            if ((numberOfColumOne >= rows || numberOfColumTwo >= rows) || (numberOfColumOne < 0 || numberOfColumTwo < 0))
+            {
+                return null;
+            }
+            int[,] array2DSwapColumns = new int[rows, columns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    array2DSwapColumns[i, j] = array2D[i, j];
+                }
+            }
+            for (int i = 0; i < rows; i++)
+            {
+                array2DSwapColumns[i, numberOfColumOne] = array2D[i, numberOfColumTwo];
+                array2DSwapColumns[i, numberOfColumTwo] = array2D[i, numberOfColumOne];
+            }
+            return array2DSwapColumns;
+        }
+        //Quest13
+        public int[] GetArrayOfSumInRows(int[,] array2D)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            int[] sumInRows = new int[rows];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    sumInRows[i] += array2D[i, j];
+                }
+            }
+            return sumInRows;
+        }
+        public int[] GetArrayOfSumInColumns(int[,] array2D)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            int[] sumInColumns = new int[columns];
+            for (int i = 0; i < columns; i++)
+            {
+                for (int j = 0; j < rows; j++)
+                {
+                    sumInColumns[i] += array2D[j, i];
+                }
+            }
+            return sumInColumns;
+        }
+        //Quest15
+        public int[,] DeleteRow(int[,] array2D, int numberOfRow)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            if (numberOfRow >= rows || numberOfRow < 0)
+            {
+                return null;
+            }
+            int newRows = rows - 1;
+            int[,] array2DWithoutRow = new int[newRows, columns];
+            for (int i = 0, z = 0; i < rows; i++)
+            {
+                if (i == numberOfRow)
+                {
+                    continue;
+                }
+                for (int j = 0; j < columns; j++)
+                {
+                    array2DWithoutRow[z, j] = array2D[i, j];
+                }
+                z++;
+            }
+            return array2DWithoutRow;
+        }
+        public int[,] DeleteColumn(int[,] array2D, int numberOfColumn)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            if (numberOfColumn >= columns || numberOfColumn < 0)
+            {
+                return null;
+            }
+            int newColumns = columns - 1;
+            int[,] array2DWithoutColumn = new int[rows, newColumns];
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0, z = 0; j < columns; j++)
+                {
+                    if (j == numberOfColumn)
+                    {
+                        continue;
+                    }
+                    array2DWithoutColumn[i, z] = array2D[i, j];
+                    z++;
+                }
+            }
+            return array2DWithoutColumn;
+        }
+        //Quest16
+        public int[] CreateChimera(int[,] array2D)
+        {
+            if (array2D == null)
+            {
+                Console.WriteLine("Сработала защита");
+                return null;
+            }
+            int rows;
+            int columns;
+            CountRowsAndColums(array2D, out rows, out columns);
+            int[] chimera = new int[array2D.Length];
+            for (int z = 0; z < chimera.Length;)
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        chimera[z] = array2D[i, j];
+                        z++;
+                    }
+                }
+            }
+            return chimera;
         }
     }
 }
