@@ -467,10 +467,7 @@ namespace Project01
             int[] sumInRows = new int[rows];
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < columns; j++)
-                {
-                    sumInRows[i] += array2D[i, j];
-                }
+                sumInRows[i] = GetSumOfElementsInRow(array2D, i);
             }
             return sumInRows;
         }
@@ -487,10 +484,7 @@ namespace Project01
             int[] sumInColumns = new int[columns];
             for (int i = 0; i < columns; i++)
             {
-                for (int j = 0; j < rows; j++)
-                {
-                    sumInColumns[i] += array2D[j, i];
-                }
+                sumInColumns[i] = GetSumOfElementsInColumn(array2D, i);
             }
             return sumInColumns;
         }
